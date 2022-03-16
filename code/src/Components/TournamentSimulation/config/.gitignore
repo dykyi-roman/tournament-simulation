@@ -1,0 +1,16 @@
+###> phpunit/phpunit ###
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> qossmic/deptrac-shim ###
+/.deptrac.cache
+###< qossmic/deptrac-shim ###
+
+###> squizlabs/php_codesniffer ###
+/.phpcs-cache
+/phpcs.xml
+###< squizlabs/php_codesniffer ###
+
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###

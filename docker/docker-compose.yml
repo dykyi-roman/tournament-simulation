@@ -1,0 +1,55 @@
+version: '3.7'
+services:
+    nginx:
+        build: nginx
+        container_name: ts-nginx
+        volumes:
+            - ../code:/var/www/html/code
+            - ./nginx/site.conf:/etc/nginx/conf.d/site.conf
+        ports:
+            - ${NGINX_HTTP_PORT}:80
+            - ${NGINX_HTTPS_PORT}:443
+        expose:
+            - "${NGINX_HTTP_PORT}"
+            - "${NGINX_HTTPS_PORT}"
+        links:
+            - php
+        networks:
+            - ts
+    php:
+        build: php
+        container_name: ts-php
+        volumes:
+            - ../code:/var/www/html/code
+            - ./php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
+            - ./php/php.ini:/usr/local/etc/php/php.ini:ro
+        links:
+            - postgres
+        networks:
+            - ts
+    postgres:
+        image: postgres:${POSTGRES_VERSION}-alpine
+        container_name: ts-postgres
+        restart: always
+        environment:
+            POSTGRES_DB: ${POSTGRES_DB}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+            POSTGRES_USER: ${POSTGRES_USER}
+        ports:
+            - ${POSTGRES_PORT}:5432
+        volumes:
+            - ./data/postgres:/docker-entrypoint-initdb.d
+            - ./data/postgres:/var/lib/postgresql/data:rw
+        networks:
+            - ts
+    adminer:
+        image: adminer
+        container_name: ts-adminer
+        restart: always
+        links:
+            - postgres
+        ports:
+            - ${ADMINER_PORT}:8080
+networks:
+    ts:
+        external: true

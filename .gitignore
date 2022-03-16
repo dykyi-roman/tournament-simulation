@@ -1,3 +1,13 @@
+# MAC OS configs
+.DS_Store
+
+# Docker
+/docker/data
+
+# IDE configs
+/.idea
+atlassian-ide-plugin.xml
+
 # Cache and logs (Symfony2)
 /app/cache/*
 /app/logs/*
