@@ -1,0 +1,10 @@
+parameters:
+
+services:
+  TS\Components\Tournament\UI\Console\GenerateTournamentCommand:
+    autowire: true
+
+  TS\Components\Tournament\Infrastructure\Repository\TournamentRepository:
+    autowire: true
+
+  TS\Components\Tournament\Features\Generate\TournamentRepositoryInterface: '@TS\Components\Tournament\Infrastructure\Repository\TournamentRepository'

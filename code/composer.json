@@ -55,7 +55,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "TS\\TournamentSimulation\\Tests\\": "src/Components/TournamentSimulation/Tests/"
+            "TS\\Tournament\\Tests\\": "src/Components/Tournament/Tests/"
         }
     },
     "replace": {

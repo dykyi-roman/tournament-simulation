@@ -43,24 +43,23 @@ cache:
 	@echo "Cache is clean"
 
 tests:
-	docker exec -it $(container-php) bash -c "vendor/bin/phpunit -c src/Components/TournamentSimulation/config/phpunit.xml"
+	docker exec -it $(container-php) bash -c "vendor/bin/phpunit -c src/Components/Tournament/config/phpunit.xml"
 	@echo "Tests done!"
 
 deptrac:
-	docker exec -it $(container-php) bash -c "vendor/bin/deptrac analyze deptrac.yaml --no-cache"
-	docker exec -it $(container-php) bash -c "vendor/bin/deptrac analyze src/Components/DeliveryTariff/config/deptrac.yaml --no-cache"
+	docker exec -it $(container-php) bash -c "vendor/bin/deptrac analyze src/Components/Tournament/config/deptrac.yaml --no-cache"
 	@echo "deptrac done!"
 
 psalm:
-	docker exec -it $(container-php) bash -c "vendor/bin/psalm -c src/Components/TournamentSimulation/config/psalm.xml"
+	docker exec -it $(container-php) bash -c "vendor/bin/psalm -c src/Components/Tournament/config/psalm.xml"
 	@echo "psalm done!"
 
 phpcs:
-	docker exec -it $(container-php) bash -c "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --dry-run --diff --config=src/Components/TournamentSimulation/config/.php-cs-fixer.php"
+	docker exec -it $(container-php) bash -c "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --dry-run --diff --config=src/Components/Tournament/config/.php-cs-fixer.php"
 	@echo "phpcs done"
 
 phpstan:
-	docker exec -it $(container-php) bash -c "vendor/bin/phpstan analyse src/Components/TournamentSimulation -c src/Components/TournamentSimulation/config/phpstan.neon"
+	docker exec -it $(container-php) bash -c "vendor/bin/phpstan analyse src/Components/Tournament -c src/Components/Tournament/config/phpstan.neon"
 	@echo "ecs done"
 
 composer:

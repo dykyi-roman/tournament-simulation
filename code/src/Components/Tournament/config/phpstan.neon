@@ -1,10 +1,11 @@
 parameters:
     level: 9
     paths:
-        - ../TournamentSimulation
+        - ../Tournament
     excludePaths:
         - ../config
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
     ignoreErrors:
         - '#Cannot cast mixed to string.#'
+        - '#Cannot cast mixed to int.#'
