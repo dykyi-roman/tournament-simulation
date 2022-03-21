@@ -1,7 +1,7 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
     <entity table="tournament"
             name="TS\Components\Tournament\Features\Generate\Entity\Tournament"
-            repository-class="TS\Components\Tournament\Infrastructure\Repository\TournamentRepository"
+            repository-class="TS\Components\Tournament\Infrastructure\Repository\Doctrine\TournamentRepository"
             change-tracking-policy="DEFERRED_EXPLICIT">
 
         <id name="id" column="id" type="integer">
@@ -9,8 +9,11 @@
         </id>
 
         <field name="name" column="name" length="255"/>
-        <field name="teamsCount" column="teams_count" type="integer"/>
-        <field name="gamesCount" column="games_count" type="integer"/>
+        <field name="teams" column="teams" type="json_document">
+            <options>
+                <option name="jsonb">true</option>
+            </options>
+        </field>
         <field name="createdAt" column="created_at" type="datetime_immutable" column-definition="TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP"/>
     </entity>
 </doctrine-mapping>

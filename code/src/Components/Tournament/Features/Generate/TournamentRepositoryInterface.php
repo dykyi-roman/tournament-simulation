@@ -9,5 +9,5 @@ interface TournamentRepositoryInterface
     /**
      * @throws FailedToGenerateTournamentException
      */
-    public function create(string $name, int $teamsCount, int $gamesCount): void;
+    public function create(string $name, array $teams): void;
 }

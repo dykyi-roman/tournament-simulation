@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace TS\Components\Tournament\Infrastructure\Repository;
+namespace TS\Components\Tournament\Infrastructure\Repository\Doctrine;
 
 use DateTimeImmutable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -23,13 +23,11 @@ final class TournamentRepository extends ServiceEntityRepository implements Tour
     /**
      * @throws FailedToGenerateTournamentException
      */
-    public function create(string $name, int $teamsCount, int $gamesCount): void
+    public function create(string $name, array $teams): void
     {
         try {
-            $model = new Tournament($name, $teamsCount, $gamesCount, new DateTimeImmutable());
-
             $entityManager = $this->registry->getManager();
-            $entityManager->persist($model);
+            $entityManager->persist(new Tournament($name, $teams, new DateTimeImmutable()));
 
             $this->save();
         } catch (UniqueConstraintViolationException) {

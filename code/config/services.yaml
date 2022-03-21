@@ -25,5 +25,10 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-#    TS\Infrastructure\Http\Middleware\LoggerMiddleware:
-#        autowire: true
+    # Cache
+    Psr\Cache\CacheItemPoolInterface: '@TS\Infrastructure\Cache\RedisClient'
+    TS\Infrastructure\Cache\RedisClient:
+        arguments:
+            - '%env(resolve:REDIS_HOST)%'
+            - '%env(resolve:REDIS_PASSWORD)%'
+            - '%env(resolve:REDIS_PORT)%'

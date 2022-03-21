@@ -4,7 +4,29 @@ services:
   TS\Components\Tournament\UI\Console\GenerateTournamentCommand:
     autowire: true
 
-  TS\Components\Tournament\Infrastructure\Repository\TournamentRepository:
+  TS\Components\Tournament\UI\Console\SimulateTournamentCommand:
     autowire: true
 
-  TS\Components\Tournament\Features\Generate\TournamentRepositoryInterface: '@TS\Components\Tournament\Infrastructure\Repository\TournamentRepository'
+  TS\Components\Tournament\Infrastructure\Repository\Doctrine\TournamentRepository:
+    autowire: true
+
+  TS\Components\Tournament\Infrastructure\Repository\Doctrine\SimulateRepository:
+    autowire: true
+
+  TS\Components\Tournament\Infrastructure\Repository\Doctrine\MatchRepository:
+    autowire: true
+
+  TS\Components\Tournament\Infrastructure\Repository\InMemory\TeamsRepository:
+    autowire: true
+
+  TS\Components\Tournament\Features\Forecast\ForecastGeneratorByGoalDifference:
+    autowire: true
+
+  TS\Components\Tournament\Features\Forecast\ForecastGeneratorByGoalAverage:
+    autowire: true
+
+  TS\Components\Tournament\Features\Forecast\ForecastGeneratorInterface: '@TS\Components\Tournament\Features\Forecast\ForecastGeneratorByGoalDifference'
+  TS\Components\Tournament\Features\Simulate\MatchRepositoryInterface: '@TS\Components\Tournament\Infrastructure\Repository\Doctrine\MatchRepository'
+  TS\Components\Tournament\Features\Simulate\SimulateRepositoryInterface: '@TS\Components\Tournament\Infrastructure\Repository\Doctrine\SimulateRepository'
+  TS\Components\Tournament\Features\Generate\TournamentRepositoryInterface: '@TS\Components\Tournament\Infrastructure\Repository\Doctrine\TournamentRepository'
+  TS\Components\Tournament\Features\Teams\TeamsRepositoryInterface: '@TS\Components\Tournament\Infrastructure\Repository\InMemory\TeamsRepository'

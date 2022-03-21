@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace TS\Components\Tournament\Features\Generate;
 
-final class GamesCountCalculator
+final class MatchsCountCalculator
 {
     public function calculate(int $teamCount): int
     {

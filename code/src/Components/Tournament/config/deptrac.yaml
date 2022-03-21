@@ -8,16 +8,16 @@ parameters:
         - type: bool
           must:
             - type: className
-              regex: Hub\\Tournament\\Application\\.*
+              regex: TS\\Tournament\\Application\\.*
           must_not:
             - type: className
-              regex: Hub\\Tournament\\Application\\Dto
+              regex: TS\\Tournament\\Application\\Dto
     - name: Domain
       collectors:
         - type: bool
           must:
             - type: className
-              regex: Hub\\Tournament\\Features\\.*
+              regex: TS\\Tournament\\Features\\.*
           must_not:
             - type: className
               regex: .*.Interface
@@ -29,7 +29,7 @@ parameters:
     - name: Infrastructure
       collectors:
         - type: className
-          regex: Hub\\Tournament\\Infrastructure\\.*
+          regex: TS\\Tournament\\Infrastructure\\.*
 
     - name: UI
       collectors:

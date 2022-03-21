@@ -27,11 +27,10 @@ final class GenerateTournamentCommand extends AbstractCommand
 
     protected function configure(): void
     {
-        $this->setHelp('This command generate a new tournament.')->addArgument(
-                'name',
-                InputArgument::REQUIRED,
-                'Tournament name'
-            )->addArgument('teams-count', InputArgument::REQUIRED, 'Teams count');
+        $this
+            ->setHelp('This command generate a new tournament.')
+            ->addArgument('name', InputArgument::REQUIRED, 'Tournament name')
+            ->addArgument('teams-count', InputArgument::REQUIRED, 'Teams count');
     }
 
     protected function doExecute(InputInterface $input, SymfonyStyle $output): void

@@ -1,0 +1,19 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+    <entity table="match"
+            name="TS\Components\Tournament\Features\Simulate\Entity\MatchItem"
+            repository-class="TS\Components\Tournament\Infrastructure\Repository\Doctrine\MatchRepository"
+            change-tracking-policy="DEFERRED_EXPLICIT">
+
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+
+        <field name="team" column="team" length="255"/>
+        <field name="won" column="won" type="smallint"/>
+        <field name="drawn" column="drawn" type="smallint"/>
+        <field name="lost" column="lost" type="smallint"/>
+        <field name="goalFor" column="goal_for" type="smallint"/>
+        <field name="goalAgainst" column="goal_against" type="smallint"/>
+        <field name="createdAt" column="created_at" type="datetime_immutable" column-definition="TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP"/>
+    </entity>
+</doctrine-mapping>

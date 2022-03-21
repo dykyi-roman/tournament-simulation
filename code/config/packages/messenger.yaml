@@ -10,4 +10,5 @@ framework:
              sync: 'sync://'
 
         routing:
-             'TS\Components\Tournament\Application\Generate\Message\NewTournamentCommand': sync
+             'TS\Components\Tournament\Application\Generate\Message\CreateTournamentCommand': sync
+             'TS\Components\Tournament\Application\Simulate\Message\SimulateTournamentMatchCommand': sync

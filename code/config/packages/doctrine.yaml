@@ -13,5 +13,10 @@ doctrine:
             TS\Components\Tournament\Features\Generate:
                 is_bundle: false
                 type: xml
-                dir: '%kernel.project_dir%/src/Components/Tournament/config/doctrine'
+                dir: '%kernel.project_dir%/src/Components/Tournament/config/doctrine/generate'
                 prefix: 'TS\Components\Tournament\Features\Generate\Entity'
+            TS\Components\Tournament\Features\Simulate:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/Components/Tournament/config/doctrine/simulate'
+                prefix: 'TS\Components\Tournament\Features\Simulate\Entity'

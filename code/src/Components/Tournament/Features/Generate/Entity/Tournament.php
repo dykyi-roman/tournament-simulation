@@ -13,8 +13,7 @@ class Tournament
 
     public function __construct(
         public readonly string $name,
-        public readonly int $teamsCount,
-        public readonly int $gamesCount,
+        public readonly array $teams,
         public readonly DateTimeImmutable $createdAt,
     ) {
     }

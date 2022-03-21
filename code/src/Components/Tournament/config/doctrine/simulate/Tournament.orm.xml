@@ -1,0 +1,16 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
+    <entity table="tournament"
+            name="TS\Components\Tournament\Features\Simulate\Entity\Tournament"
+            repository-class="TS\Components\Tournament\Infrastructure\Repository\Doctrine\SimulateRepository"
+            change-tracking-policy="DEFERRED_EXPLICIT">
+
+        <id name="id" column="id" type="integer" />
+
+        <field name="name" column="name" length="255"/>
+        <field name="teams" column="teams" type="json_document">
+            <options>
+                <option name="jsonb">true</option>
+            </options>
+        </field>
+    </entity>
+</doctrine-mapping>

@@ -8,9 +8,9 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\Migrations\AbstractMigration;
 
-final class Version20220316104031 extends AbstractMigration
+final class Version20220316104033 extends AbstractMigration
 {
-    final const TABLE = 'tournament';
+    final const TABLE = 'match';
 
     public function getDescription(): string
     {
@@ -22,11 +22,15 @@ final class Version20220316104031 extends AbstractMigration
         $table = $schema->createTable(self::TABLE);
         $table->addColumn('id', 'integer', array('autoincrement' => true));
 
-        $table->addColumn('name', Types::STRING);
+        $table->addColumn('team', Types::STRING);
+        $table->addColumn('won', Types::SMALLINT);
+        $table->addColumn('drawn', Types::SMALLINT);
+        $table->addColumn('lost', Types::SMALLINT);
+        $table->addColumn('goal_for', Types::SMALLINT);
+        $table->addColumn('goal_against', Types::SMALLINT);
         $table->addColumn('created_at', Types::DATETIME_MUTABLE);
 
         $table->setPrimaryKey(['id']);
-        $table->addUniqueConstraint(['name'], 'UIX_NAME');
     }
 
     public function down(Schema $schema): void

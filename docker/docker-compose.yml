@@ -25,8 +25,19 @@ services:
             - ./php/php.ini:/usr/local/etc/php/php.ini:ro
         links:
             - postgres
+            - redis
         networks:
             - ts
+    redis:
+        image: redis
+        container_name: ts-redis
+        command: [ "redis-server", "--appendonly", "yes", "--requirepass", '${REDIS_PASSWORD}' ]
+        ports:
+            - ${REDIS_PORT}:6379
+        networks:
+            - ts
+        volumes:
+            - ./data/redis:/data
     postgres:
         image: postgres:${POSTGRES_VERSION}-alpine
         container_name: ts-postgres
