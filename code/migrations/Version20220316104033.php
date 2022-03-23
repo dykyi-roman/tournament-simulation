@@ -22,6 +22,7 @@ final class Version20220316104033 extends AbstractMigration
         $table = $schema->createTable(self::TABLE);
         $table->addColumn('id', 'integer', array('autoincrement' => true));
 
+        $table->addColumn('tournament_id', Types::INTEGER);
         $table->addColumn('team', Types::STRING);
         $table->addColumn('won', Types::SMALLINT);
         $table->addColumn('drawn', Types::SMALLINT);
@@ -31,6 +32,7 @@ final class Version20220316104033 extends AbstractMigration
         $table->addColumn('created_at', Types::DATETIME_MUTABLE);
 
         $table->setPrimaryKey(['id']);
+        $table->addForeignKeyConstraint('tournament', ['tournament_id'], ['id']);
     }
 
     public function down(Schema $schema): void

@@ -19,14 +19,20 @@ services:
   TS\Components\Tournament\Infrastructure\Repository\InMemory\TeamsRepository:
     autowire: true
 
-  TS\Components\Tournament\Features\Forecast\ForecastGeneratorByGoalDifference:
+  TS\Components\Tournament\Features\Forecast\Generator\ForecastGeneratorByGoalDifference:
     autowire: true
 
-  TS\Components\Tournament\Features\Forecast\ForecastGeneratorByGoalAverage:
+  TS\Components\Tournament\Features\Forecast\Generator\ForecastGeneratorByGoalAverage:
     autowire: true
 
-  TS\Components\Tournament\Features\Forecast\ForecastGeneratorInterface: '@TS\Components\Tournament\Features\Forecast\ForecastGeneratorByGoalDifference'
+  TS\Components\Tournament\Infrastructure\Dao\ForecastDao:
+    arguments:
+      - '@doctrine.dbal.default_connection'
+
+  TS\Components\Tournament\Features\Forecast\Generator\ForecastGeneratorInterface: '@TS\Components\Tournament\Features\Forecast\Generator\ForecastGeneratorByGoalDifference'
   TS\Components\Tournament\Features\Simulate\MatchRepositoryInterface: '@TS\Components\Tournament\Infrastructure\Repository\Doctrine\MatchRepository'
   TS\Components\Tournament\Features\Simulate\SimulateRepositoryInterface: '@TS\Components\Tournament\Infrastructure\Repository\Doctrine\SimulateRepository'
   TS\Components\Tournament\Features\Generate\TournamentRepositoryInterface: '@TS\Components\Tournament\Infrastructure\Repository\Doctrine\TournamentRepository'
   TS\Components\Tournament\Features\Teams\TeamsRepositoryInterface: '@TS\Components\Tournament\Infrastructure\Repository\InMemory\TeamsRepository'
+
+  TS\Components\Tournament\Features\Forecast\ForecastDaoInterface: '@TS\Components\Tournament\Infrastructure\Dao\ForecastDao'
