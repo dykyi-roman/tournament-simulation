@@ -9,11 +9,13 @@ use Psr\Cache\CacheItemPoolInterface;
 
 final class InMemoryClient implements CacheItemPoolInterface
 {
-    private array $items;
+    public function __construct(private array $items = [])
+    {
+    }
 
     public function getItem(string $key): CacheItemInterface
     {
-        return new CacheItem($key, $this->items[$key]);
+        return new CacheItem($key, $this->items[$key] ?? null);
     }
 
     public function getItems(array $keys = []): array
